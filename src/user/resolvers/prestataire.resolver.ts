@@ -9,27 +9,27 @@ export class PrestataireResolver {
   constructor(private readonly prestataireService: PrestataireService) {}
 
   @Mutation(() => Prestataire)
-  createPrestataire(@Args('createPrestataireInput') createPrestataireInput: CreatePrestataireInput) {
+  async createPrestataire(@Args('createPrestataireInput') createPrestataireInput: CreatePrestataireInput) {
     return this.prestataireService.create(createPrestataireInput);
   }
 
   @Query(() => [Prestataire], { name: 'prestataire' })
-  findAll() {
-    return this.prestataireService.findAll();
+  async findAll() {
+    return await this.prestataireService.findAll();
   }
 
   @Query(() => Prestataire, { name: 'prestataire' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.prestataireService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return await this.prestataireService.findOne(id);
   }
 
   @Mutation(() => Prestataire)
-  updatePrestataire(@Args('updatePrestataireInput') updatePrestataireInput: UpdatePrestataireInput) {
-    return this.prestataireService.update(updatePrestataireInput.id, updatePrestataireInput);
+  async updatePrestataire(@Args('updatePrestataireInput') updatePrestataireInput: UpdatePrestataireInput, @Args('id') id: number) {
+    return await this.prestataireService.update(id, updatePrestataireInput);
   }
 
   @Mutation(() => Prestataire)
-  removePrestataire(@Args('id', { type: () => Int }) id: number) {
-    return this.prestataireService.remove(id);
+  async removePrestataire(@Args('id', { type: () => Int }) id: number) {
+    return await this.prestataireService.remove(id);
   }
 }

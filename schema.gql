@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type App {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Convive {
+  id: Int!
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
+type Prestataire {
+  id: Int!
+  name: String!
+  roles: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
+type Hote {
+  id: Int!
+  name: String!
+  password: String!
+  telephone: String!
+  adresse: String!
+}
+
+type Query {
+  app(id: Int!): App!
+  me: Hote!
+  hote(id: Int!): Hote!
+  prestataire(id: Int!): Prestataire!
+  convive(id: Int!): Convive!
+}
+
+type Mutation {
+  createApp(createAppInput: CreateAppInput!): App!
+  updateApp(updateAppInput: UpdateAppInput!): App!
+  removeApp(id: Int!): App!
+  register: Hote!
+  login: Hote!
+  logoutt: Hote!
+  createHote(createHoteInput: CreateHoteInput!): Hote!
+  updateHote(updateHoteInput: UpdateHoteInput!, id: Float!): Hote!
+  removeHote(id: Int!): Hote!
+  createPrestataire(createPrestataireInput: CreatePrestataireInput!): Prestataire!
+  updatePrestataire(updatePrestataireInput: UpdatePrestataireInput!, id: Float!): Prestataire!
+  removePrestataire(id: Int!): Prestataire!
+  createConvive(createConviveInput: CreateConviveInput!): Convive!
+  updateConvive(updateConviveInput: UpdateConviveInput!, id: Float!): Convive!
+  removeConvive(id: Int!): Convive!
+}
+
+input CreateAppInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAppInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateHoteInput {
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
+input UpdateHoteInput {
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
+input CreatePrestataireInput {
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+  roles: String!
+}
+
+input UpdatePrestataireInput {
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+  roles: String!
+}
+
+input CreateConviveInput {
+  name: String!
+  telephone: String!
+  adresse: String!
+  password: String!
+}
+
+input UpdateConviveInput {
+  name: String!
+  telephone: String!
+  adresse: String!
+  password: String!
+}

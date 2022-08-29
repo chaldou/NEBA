@@ -1,26 +1,33 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateConviveInput } from '../dto/create-convive.input';
 import { UpdateConviveInput } from '../dto/update-convive.input';
+import { Convive } from '../entities/convive.entity';
+import { Prestataire } from '../entities/prestataire.entity';
 
 @Injectable()
 export class ConviveService {
+ 
+  constructor(@InjectRepository(Convive) private conviveRepository: Repository<Convive>){}
+
   create(createConviveInput: CreateConviveInput) {
-    return 'This action adds a new convive';
+    return this.conviveRepository.save(createConviveInput);
   }
 
-  findAll() {
-    return `This action returns all convive`;
+  findAll():Promise<Convive[]> {
+    return this.conviveRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} convive`;
+    return this.conviveRepository.findOne({where: {id}});
   }
 
   update(id: number, updateConviveInput: UpdateConviveInput) {
-    return `This action updates a #${id} convive`;
+    return this.conviveRepository.update(id, updateConviveInput);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} convive`;
+    return this.conviveRepository.delete(id);
   }
 }

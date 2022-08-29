@@ -9,27 +9,27 @@ export class HoteResolver {
   constructor(private readonly hoteService: HoteService) {}
 
   @Mutation(() => Hote)
-  createHote(@Args('createHoteInput') createHoteInput: CreateHoteInput) {
-    return this.hoteService.create(createHoteInput);
+  async createHote(@Args('createHoteInput') createHoteInput: CreateHoteInput) {
+    return await this.hoteService.create(createHoteInput);
   }
 
   @Query(() => [Hote], { name: 'hote' })
-  findAll() {
-    return this.hoteService.findAll();
+  async findAll() {
+    return await this.hoteService.findAll();
   }
 
   @Query(() => Hote, { name: 'hote' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.hoteService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return await this.hoteService.findOne(id);
   }
 
   @Mutation(() => Hote)
-  updateHote(@Args('updateHoteInput') updateHoteInput: UpdateHoteInput) {
-    return this.hoteService.update(updateHoteInput.id, updateHoteInput);
+  async updateHote(@Args('updateHoteInput') updateHoteInput: UpdateHoteInput, @Args('id') id: number) {
+    return await this.hoteService.update(id, updateHoteInput);
   }
 
   @Mutation(() => Hote)
-  removeHote(@Args('id', { type: () => Int }) id: number) {
-    return this.hoteService.remove(id);
+  async removeHote(@Args('id', { type: () => Int }) id: number) {
+    return await this.hoteService.remove(id);
   }
 }

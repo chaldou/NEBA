@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AppService } from './app.service';
-import { App } from './user/entities/app.entity';
+import { App } from './app.entity';
 import { CreateAppInput } from './create-app.input';
 import { UpdateAppInput } from './update-app.input';
 

@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreatePrestataireInput } from '../dto/create-prestataire.input';
 import { UpdatePrestataireInput } from '../dto/update-prestataire.input';
+import { Prestataire } from '../entities/prestataire.entity';
+import { Roles } from '../roles/role.decorator';
 
 @Injectable()
 export class PrestataireService {
+   
+  constructor(  @InjectRepository(Prestataire)
+  private prestataireRepository: Repository<Prestataire>){}
+
   create(createPrestataireInput: CreatePrestataireInput) {
-    return 'This action adds a new prestataire';
+    return this.prestataireRepository.create(createPrestataireInput);
   }
 
-  findAll() {
-    return `This action returns all prestataire`;
+  findAll():Promise<Prestataire[]> {
+    return this.prestataireRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} prestataire`;
+    return this.prestataireRepository.findOne({where: {id}});
   }
 
   update(id: number, updatePrestataireInput: UpdatePrestataireInput) {
-    return `This action updates a #${id} prestataire`;
+    return this.prestataireRepository.update(id, updatePrestataireInput);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} prestataire`;
+    return this.prestataireRepository.delete(id);
   }
+
 }

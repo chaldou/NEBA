@@ -1,26 +1,39 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository,  } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateHoteInput } from '../dto/create-hote.input';
 import { UpdateHoteInput } from '../dto/update-hote.input';
+import { Hote } from '../entities/hote.entity';
 
 @Injectable()
 export class HoteService {
+  constructor(
+    @InjectRepository(Hote)
+    private hoteRepository: Repository<Hote>){
+
+}
+  
   create(createHoteInput: CreateHoteInput) {
-    return 'This action adds a new hote';
+    return this.hoteRepository.save(createHoteInput);
   }
 
-  findAll() {
-    return `This action returns all hote`;
+  findAll(): Promise<Hote[]> {
+    return this.hoteRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} hote`;
+    return  this.hoteRepository.findOne({where: {id}});
   }
 
-  update(id: number, updateHoteInput: UpdateHoteInput) {
-    return `This action updates a #${id} hote`;
+  update(hoteid: number, updateHoteInput: UpdateHoteInput) {
+    return this.hoteRepository.update(hoteid, updateHoteInput);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} hote`;
+  remove(hoteid: number) {
+    return this.hoteRepository.delete(hoteid);
+  }
+
+  findbyhotename(name: string){
+    return this.hoteRepository.findOne({where: {name}})
   }
 }

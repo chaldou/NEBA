@@ -22,10 +22,9 @@ export class RolesGuard implements CanActivate{
         }
 
         //does the current user making the request have the required roles
-        
-        const {user} = context.switchToHttp().getRequest(); //to tell which user is making the request but this should be done after the authentication
+        const {User} = context.switchToHttp().getRequest(); //to tell which user is making the request but this should be done after the authentication
 
-
-        return requireRoles.some((role) => user.roles.includes(role));
+    //does at least one of the require roles a role that the user has
+        return requireRoles.some((role) => User.roles.includes(role));
     }
 }
