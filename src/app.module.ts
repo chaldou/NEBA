@@ -10,31 +10,35 @@ import { User } from './user/user.entity';
 import { Hote } from './user/entities/hote.entity';
 import { Convive } from './user/entities/convive.entity';
 import { Prestataire } from './user/entities/prestataire.entity';
-
-
-
+import { ConnectionOptions } from 'typeorm';
+import { EventsModule } from './events/events/events.module';
+//import DatabaseConfig from './config/database.config'
 
 @Module({
   providers: [AppResolver, AppService],
   imports: [
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'schema.gql'),
-      playground: true,
-      context: ({req}) => ({hearders: req.headers}),
-    }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'postgres',
       host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'auth',
-      entities: [User, Hote, Convive, Prestataire],
-      synchronize: true,
-
+      port: 5432,
+      username: 'postgres',
+      password: 'Choupy270991',
+      database: 'neba_app_dev_db',
+      entities: ['dist/**/*.model.js'],
+      synchronize: false,
+      autoLoadEntities: true
     }),
+
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+        driver: ApolloDriver,
+        debug: true,
+        playground: true,
+      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+    }),
+
     UserModule,
+
+    EventsModule,
   ],
 })
 export class AppModule {}

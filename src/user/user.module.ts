@@ -24,6 +24,7 @@ import { Convive } from './entities/convive.entity';
               provide: APP_GUARD,
               useClass: RolesGuard
              }],
+  
   imports: [ CacheModule.register(),TypeOrmModule.forFeature([Hote]),TypeOrmModule.forFeature([Prestataire]), TypeOrmModule.forFeature([Convive]), HoteModule, PrestataireModule, ConviveModule], 
 
 })
