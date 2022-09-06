@@ -24,7 +24,7 @@ export class HoteService {
   findOne(id: number) {
     return  this.hoteRepository.findOne({where: {id}});
   }
-
+ 
   update(hoteid: number, updateHoteInput: UpdateHoteInput) {
     return this.hoteRepository.update(hoteid, updateHoteInput);
   }

@@ -7,12 +7,15 @@ import {
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
+  OneToOne,
+  Relation,
 } from 'typeorm';
 import { Convive } from './convive.entity';
 import { Prestataire } from './prestataire.entity';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { ResponseHote } from '../dto/create-hote.input';
+import { EventsUserEntity } from 'src/events/entities/events.entity'
 
 @Entity()
 @ObjectType()
@@ -36,6 +39,10 @@ export class Hote {
   @Field()
   @Column('varchar', { nullable: true, length: 100 })
   adresse: string;
+
+  @OneToOne(() => EventsUserEntity , (event_user) => event_user.hote)
+  event_user: Relation<EventsUserEntity>;
+
 
   @ManyToMany(() => Convive, (convive) => convive.hote)
   @JoinTable()

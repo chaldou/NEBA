@@ -7,6 +7,10 @@ import {
   ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToOne,
+  Relation,
+  Timestamp,
 } from 'typeorm';
 import { Hote } from 'src/user/entities/hote.entity';
 
@@ -25,6 +29,32 @@ export class EventsEntity {
   @Field()
   @Column('text', { nullable: true })
   description: string;
+  
+  @OneToOne(() => EventsUserEntity , (event_user) => event_user.event)
+  event_user: Relation<EventsUserEntity>;
+}
+
+@Entity()
+@ObjectType()
+export class EventsUserEntity {
+    @Field(() => Int)
+  @PrimaryGeneratedColumn()
+  id?: number;
+
+  @ManyToOne(() => Hote, (hote) => hote.event_user)
+  hote: Relation<Hote>;
+
+  @ManyToOne(() => EventsEntity, (event) => event.event_user)
+  event: Relation<EventsEntity>;
+
+  @Field()
+  @Column('date')
+  date_event: Date;
+
+  @Field()
+  @Column('time')
+  time_event: Date;
 
 }
+
 
