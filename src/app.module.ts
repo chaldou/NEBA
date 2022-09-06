@@ -32,6 +32,18 @@ import { Prestataire } from './user/entities/prestataire.entity';
       database: 'auth',
       entities: [User, Hote, Convive, Prestataire],
       synchronize: true,
+      logging: true,
+
+      /*type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "postgres",
+      password: "12345",
+      database: "auth",
+      synchronize: true,
+      logging: true,
+      entities: [User, Hote, Convive, Prestataire]*/
+
 
     }),
     UserModule,

@@ -6,7 +6,7 @@ import { Roles } from '../roles/role.enum';
 @InputType()
 export class CreatePrestataireInput {
   @Field()
-  @Column('varchar', { nullable: true, length: 100 })
+  @Column('varchar', { nullable: false, length: 100 })
   name: string;
 
   @Field()

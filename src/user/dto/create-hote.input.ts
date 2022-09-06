@@ -5,26 +5,11 @@ import { Column } from 'typeorm';
 export class CreateHoteInput {
   @Field()
   @Column('varchar', { nullable: true, length: 100 })
-  name: string;
+  name?: string;
 
   @Field()
   @Column('varchar', { nullable: false, length: 100 })
-  telephone: string;
-
-  @Field()
-  @Column('varchar', { nullable: false, length: 100 })
-  password: string;
-
-  @Field()
-  @Column('varchar', { nullable: true, length: 100 })
-  adresse: string;
-}
-
-@InputType()
-export class ResponseHote{
-  @Field()
-  @Column('varchar', { nullable: true, length: 100 })
-  name: string;
+  password?: string;
 
   @Field()
   @Column('varchar', { nullable: false, length: 100 })
@@ -33,10 +18,25 @@ export class ResponseHote{
   @Field()
   @Column('varchar', { nullable: true, length: 100 })
   adresse?: string;
+}
+
+@InputType()
+export class ResponseHote{
+  @Field()
+  @Column('varchar', { nullable: false, length: 100 })
+  name?: string;
 
   @Field()
-  @Column('varchar', { nullable: true, length: 100 })
-  password: string;
+  @Column('varchar', { nullable: false, length: 100 })
+  telephone?: string;
+
+  @Field()
+  @Column('varchar', { nullable: false, length: 100 })
+  adresse?: string;
+
+  @Field()
+  @Column('varchar', { nullable: false, length: 100 })
+  password?: string;
 
   @Field()
   @Column()

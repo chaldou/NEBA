@@ -19,11 +19,13 @@ export class UserService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager,
     @InjectRepository(Hote)
-    private hoterepository: Repository<Hote>,
+    private readonly hoterepository: Repository<Hote>,
     @InjectRepository(Convive)
     private conviverepository: Repository<Convive>,
     @InjectRepository(Prestataire)
     private prestatairerepository: Repository<Prestataire>,
+    @InjectRepository(User)
+    private userrepository: Repository<User>
   ) {}
 
   async loginhote(data: CreateHoteInput): Promise<ResponseHote>{
