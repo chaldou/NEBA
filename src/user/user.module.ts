@@ -19,11 +19,12 @@ import { Prestataire } from './entities/prestataire.entity';
 import { Convive } from './entities/convive.entity';
 
 @Module({
-  providers: [UserResolver, UserService
+  providers: [UserResolver, UserService],
              /*{
               provide: APP_GUARD,
               useClass: RolesGuard
-             }*/],
+             }],*/
+  
   imports: [ CacheModule.register(),TypeOrmModule.forFeature([Hote]),TypeOrmModule.forFeature([Prestataire]), TypeOrmModule.forFeature([Convive]), HoteModule, PrestataireModule, ConviveModule], 
 
 })
