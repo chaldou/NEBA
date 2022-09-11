@@ -4,40 +4,25 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user/user.entity';
-import { Hote } from './user/entities/hote.entity';
-import { Convive } from './user/entities/convive.entity';
-import { Prestataire } from './user/entities/prestataire.entity';
-import { EventsModule } from './events/events/events.module';
+import { UserModule } from './modules/user/user.module';
+import { EventsModule } from './modules/event/events.module';
+import { AuthModule } from './auth/auth.module';
+import { config } from './config/database.config';
+
 //import DatabaseConfig from './config/database.config'
 
 @Module({
   providers: [AppResolver, AppService],
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: '127.0.0.1',
-      port: 5432,
-      username: 'postgres',
-      password: '12345',
-      database: 'neba_app_dev_db',
-      entities: ['dist/**/*.model.js'],
-      synchronize: false,
-      autoLoadEntities: true
-    }),
-
+    TypeOrmModule.forRoot(config),
     GraphQLModule.forRoot<ApolloDriverConfig>({
         driver: ApolloDriver,
         debug: true,
         playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
-
-    UserModule,
-
-    EventsModule,
+    UserModule, EventsModule, AuthModule,
   ],
 })
 export class AppModule {}

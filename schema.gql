@@ -7,23 +7,6 @@ type App {
   exampleField: Int!
 }
 
-type Convive {
-  id: Int!
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-}
-
-type Prestataire {
-  id: Int!
-  name: String!
-  roles: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-}
-
 type Hote {
   id: Int!
   name: String!
@@ -36,8 +19,6 @@ type Query {
   app(id: Int!): App!
   me: Hote!
   hote(id: Int!): Hote!
-  prestataire(id: Int!): Prestataire!
-  convive(id: Int!): Convive!
 }
 
 type Mutation {
@@ -50,12 +31,6 @@ type Mutation {
   createHote(createHoteInput: CreateHoteInput!): Hote!
   updateHote(updateHoteInput: UpdateHoteInput!, id: Float!): Hote!
   removeHote(id: Int!): Hote!
-  createPrestataire(createPrestataireInput: CreatePrestataireInput!): Prestataire!
-  updatePrestataire(updatePrestataireInput: UpdatePrestataireInput!, id: Float!): Prestataire!
-  removePrestataire(id: Int!): Prestataire!
-  createConvive(createConviveInput: CreateConviveInput!): Convive!
-  updateConvive(updateConviveInput: UpdateConviveInput!, id: Float!): Convive!
-  removeConvive(id: Int!): Convive!
 }
 
 input CreateAppInput {
@@ -71,44 +46,14 @@ input UpdateAppInput {
 
 input CreateHoteInput {
   name: String!
-  telephone: String!
   password: String!
+  telephone: String!
   adresse: String!
 }
 
 input UpdateHoteInput {
   name: String!
-  telephone: String!
   password: String!
-  adresse: String!
-}
-
-input CreatePrestataireInput {
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-  roles: String!
-}
-
-input UpdatePrestataireInput {
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-  roles: String!
-}
-
-input CreateConviveInput {
-  name: String!
   telephone: String!
   adresse: String!
-  password: String!
-}
-
-input UpdateConviveInput {
-  name: String!
-  telephone: String!
-  adresse: String!
-  password: String!
 }
