@@ -9,6 +9,9 @@ import { UserModule } from './modules/user/user.module';
 import { EventsModule } from './modules/event/events.module';
 import { AuthModule } from './auth/auth.module';
 import { config } from './config/database.config';
+import { HoteModule } from './modules/hote/hote.module';
+import { PrestataireModule } from './modules/prestataire/prestataire.module';
+import { ConviveModule } from './modules/convive/convive.module';
 
 //import DatabaseConfig from './config/database.config'
 
@@ -22,7 +25,7 @@ import { config } from './config/database.config';
         playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
-    UserModule, EventsModule, AuthModule,
+    UserModule, EventsModule, AuthModule, HoteModule, PrestataireModule, ConviveModule
   ],
 })
 export class AppModule {}

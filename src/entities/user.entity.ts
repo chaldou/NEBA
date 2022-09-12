@@ -22,7 +22,7 @@ export class User {
   @Column('varchar', { nullable: false, length: 100 })
   password: string;
 
-  @Field(() => UserRoles)
+  @Field()
   @Column({type: "enum",
           enum: UserRoles,
           default: UserRoles.HOTE})

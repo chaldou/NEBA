@@ -1,15 +1,15 @@
-import { Module } from "@nestjs/common";
+import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { Hote } from "src/entities/hote.entity";
 import { Prestataire } from "../../entities/prestataire.entity";
-import { HoteService } from "../hote/hote.service";
+import { HoteModule } from "../hote/hote.module";
 import { PrestataireResolver } from "./prestataire.resolver";
 import { PrestataireService } from "./prestataire.service";
 
 
 @Module({
-    providers: [PrestataireResolver, PrestataireService, HoteService],
-    imports: [TypeOrmModule.forFeature([Prestataire, Hote])]
+    providers: [PrestataireResolver, PrestataireService],
+    imports: [forwardRef(() => HoteModule),TypeOrmModule.forFeature([Prestataire])],
+    exports: [PrestataireResolver, PrestataireService]
 })
 
 export class PrestataireModule{}

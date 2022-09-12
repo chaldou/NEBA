@@ -3,20 +3,19 @@ import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Hote } from '../../entities/hote.entity';
-import { Prestataire } from '../../entities/prestataire.entity';
-import { Convive } from '../../entities/convive.entity';
 import { User } from '../../entities/user.entity';
+import { RolesGuard } from '../../roles/role.guards';
 /*import { RolesGuard } from './roles/role.guards';*/
 
 
 @Module({
-  providers: [UserResolver, UserService],
-             /*{
+  providers: [UserResolver, UserService,
+             {
               provide: APP_GUARD,
               useClass: RolesGuard
-             }],*/
+             }],
   
-  imports: [ /*CacheModule.register()*/TypeOrmModule.forFeature([User])]
+  imports: [TypeOrmModule.forFeature([User])],
+  exports:[UserResolver, UserService]
 })
 export class UserModule {}
