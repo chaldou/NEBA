@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Hote } from 'src/user/entities/hote.entity';
 import { HoteService } from 'src/user/providers/hote.service';
 
 @Injectable()
 export class AuthModuleService {
+  jwtService: any;
     constructor(private usersService: HoteService) {}
 
     async validateUser(name: string, password: string): Promise<any> {
@@ -13,5 +13,12 @@ export class AuthModuleService {
         return result;
       }
       return null;
+    }
+
+    async login(user: any) {
+      const payload = { username: user.name, sub: user.id };
+      return {
+        access_token: this.jwtService.sign(payload),
+      };
     }
 }

@@ -35,7 +35,6 @@ type Hote {
 type Query {
   app(id: Int!): App!
   me: Hote!
-  hote(id: Int!): Hote!
   prestataire(id: Int!): Prestataire!
   convive(id: Int!): Convive!
 }
@@ -47,9 +46,6 @@ type Mutation {
   register: Hote!
   login: Hote!
   logoutt: Hote!
-  createHote(createHoteInput: CreateHoteInput!): Hote!
-  updateHote(updateHoteInput: UpdateHoteInput!, id: Float!): Hote!
-  removeHote(id: Int!): Hote!
   createPrestataire(createPrestataireInput: CreatePrestataireInput!): Prestataire!
   updatePrestataire(updatePrestataireInput: UpdatePrestataireInput!, id: Float!): Prestataire!
   removePrestataire(id: Int!): Prestataire!
@@ -67,20 +63,6 @@ input UpdateAppInput {
   """Example field (placeholder)"""
   exampleField: Int
   id: Int!
-}
-
-input CreateHoteInput {
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-}
-
-input UpdateHoteInput {
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
 }
 
 input CreatePrestataireInput {

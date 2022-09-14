@@ -1,4 +1,4 @@
-import { CacheModule, Module } from '@nestjs/common';
+import { CacheModule, Module, forwardRef } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { HoteService } from './providers/hote.service';
@@ -17,15 +17,23 @@ import { PrestataireModule } from './modules/prestataire.module';
 import { ConviveModule } from './modules/convive.module';
 import { Prestataire } from './entities/prestataire.entity';
 import { Convive } from './entities/convive.entity';
+import { AuthModuleModule } from 'src/auth-module/auth-module.module';
 
 @Module({
-  providers: [UserResolver, UserService,
+  providers: [UserResolver, UserService,HoteService,
              {
               provide: APP_GUARD,
               useClass: RolesGuard
              }],
   
-  imports: [ CacheModule.register(),TypeOrmModule.forFeature([Hote]),TypeOrmModule.forFeature([Prestataire]), TypeOrmModule.forFeature([Convive]), HoteModule, PrestataireModule, ConviveModule], 
+  imports: [ 
+    forwardRef(() => AuthModuleModule), 
+    CacheModule.register(),
+    TypeOrmModule.forFeature([Hote]),
+    TypeOrmModule.forFeature([Prestataire]), 
+    TypeOrmModule.forFeature([Convive]),
+    PrestataireModule, ConviveModule],
+    
 
 })
 export class UserModule {}
