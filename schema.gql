@@ -7,6 +7,14 @@ type App {
   exampleField: Int!
 }
 
+type User {
+  id: Int!
+  name: String!
+  telephone: String!
+  password: String!
+  userrole: String!
+}
+
 type Convive {
   id: Int!
   name: String!
@@ -34,7 +42,12 @@ type Hote {
 
 type Query {
   app(id: Int!): App!
+<<<<<<< HEAD
   me: Hote!
+=======
+  user(id: Int!): User!
+  hote(id: Int!): Hote!
+>>>>>>> 5a0ce61b5e1c009a146d898821b931a974483d76
   prestataire(id: Int!): Prestataire!
   convive(id: Int!): Convive!
 }
@@ -43,9 +56,18 @@ type Mutation {
   createApp(createAppInput: CreateAppInput!): App!
   updateApp(updateAppInput: UpdateAppInput!): App!
   removeApp(id: Int!): App!
+<<<<<<< HEAD
   register: Hote!
   login: Hote!
   logoutt: Hote!
+=======
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!, id: Float!): User!
+  removeUser(id: Int!): User!
+  createHote(createHoteInput: CreateHoteInput!): Hote!
+  updateHote(updateHoteInput: UpdateHoteInput!, id: Float!): Hote!
+  removeHote(id: Int!): Hote!
+>>>>>>> 5a0ce61b5e1c009a146d898821b931a974483d76
   createPrestataire(createPrestataireInput: CreatePrestataireInput!): Prestataire!
   updatePrestataire(updatePrestataireInput: UpdatePrestataireInput!, id: Float!): Prestataire!
   removePrestataire(id: Int!): Prestataire!
@@ -65,6 +87,35 @@ input UpdateAppInput {
   id: Int!
 }
 
+<<<<<<< HEAD
+=======
+input CreateUserInput {
+  name: String!
+  telephone: String!
+  userrole: String!
+}
+
+input UpdateUserInput {
+  name: String!
+  telephone: String!
+  userrole: String!
+}
+
+input CreateHoteInput {
+  name: String!
+  password: String!
+  telephone: String!
+  adresse: String!
+}
+
+input UpdateHoteInput {
+  name: String!
+  password: String!
+  telephone: String!
+  adresse: String!
+}
+
+>>>>>>> 5a0ce61b5e1c009a146d898821b931a974483d76
 input CreatePrestataireInput {
   name: String!
   telephone: String!
