@@ -1,23 +1,22 @@
 import { CacheModule, Module, forwardRef } from '@nestjs/common';
-import { UserService } from './user.service';
-import { UserResolver } from './user.resolver';
-import { HoteService } from './providers/hote.service';
-import { HoteResolver } from './resolvers/hote.resolver';
-import { ConviveResolver } from './resolvers/convive.resolver';
-import { ConviveService } from './providers/convive.service';
-import { PrestataireResolver } from './resolvers/prestataire.resolver';
-import { PrestataireService } from './providers/prestataire.service';
+import { UserService } from 'src/modules/user/user.service';
+import { UserResolver } from 'src/modules/user//user.resolver';
+import { HoteService } from 'src/modules/hote/hote.service';
+import { HoteResolver } from 'src/modules/hote/hote.resolver';
+import { ConviveResolver } from 'src/modules/convive/convive.resolver';
+import { ConviveService } from 'src/modules/convive/convive.service';
+import { PrestataireResolver } from 'src/modules/prestataire/prestataire.resolver';
+import { PrestataireService } from 'src/modules/prestataire/prestataire.service';
 import { APP_GUARD } from '@nestjs/core';
-import { RolesGuard } from './roles/role.guards';
+import { RolesGuard } from 'src/roles/role.guards';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './user.entity';
-import { Hote } from './entities/hote.entity';
-import { HoteModule } from './modules/hote.module';
-import { PrestataireModule } from './modules/prestataire.module';
-import { ConviveModule } from './modules/convive.module';
-import { Prestataire } from './entities/prestataire.entity';
-import { Convive } from './entities/convive.entity';
+import { HoteModule } from 'src/modules/hote/hote.module';
+import { PrestataireModule } from 'src/modules/prestataire/prestataire.module';
+import { ConviveModule } from 'src/modules/convive/convive.module';
+import { Prestataire } from 'src/entities/prestataire.entity';
+import { Convive } from 'src/entities/convive.entity';
 import { AuthModuleModule } from 'src/auth-module/auth-module.module';
+import { Hote } from 'src/entities/hote.entity';
 
 @Module({
   providers: [UserResolver, UserService,HoteService,
