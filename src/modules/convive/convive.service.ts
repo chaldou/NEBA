@@ -6,15 +6,15 @@ import { CreateConviveInput } from './dto/create-convive.input';
 import { UpdateConviveInput } from './dto/update-convive.input';
 
 
+
 @Injectable()
 export class ConviveService {
  
   constructor(@InjectRepository(Convive) private conviveRepository: Repository<Convive>){}
 
   create(createConviveInput: CreateConviveInput) {
-    return this.conviveRepository.save(createConviveInput);
+    return this.conviveRepository.save(createConviveInput)
   }
-
   findAll():Promise<Convive[]> {
     return this.conviveRepository.find();
   }

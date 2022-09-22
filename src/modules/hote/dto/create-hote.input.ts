@@ -20,25 +20,4 @@ export class CreateHoteInput {
   adresse?: string;
 }
 
-/*@InputType()
-export class ResponseHote{
-  @Field()
-  @Column('varchar', { nullable: false, length: 100 })
-  name?: string;
 
-  @Field()
-  @Column('varchar', { nullable: false, length: 100 })
-  telephone?: string;
-
-  @Field()
-  @Column('varchar', { nullable: false, length: 100 })
-  adresse?: string;
-
-  @Field()
-  @Column('varchar', { nullable: false, length: 100 })
-  password?: string;
-
-  @Field()
-  @Column()
-  token?: string
-}*/

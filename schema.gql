@@ -7,29 +7,18 @@ type App {
   exampleField: Int!
 }
 
-type User {
-  id: Int!
-  name: String!
-  telephone: String!
-  password: String!
-  userrole: String!
+type Album {
+  id: Float!
+  titre: String!
 }
 
-type Convive {
-  id: Int!
+type Artiste {
+  id: Float!
   name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
 }
 
-type Prestataire {
-  id: Int!
-  name: String!
-  roles: String!
-  telephone: String!
-  password: String!
-  adresse: String!
+type EventToArtiste {
+  id: Float!
 }
 
 type Hote {
@@ -40,12 +29,53 @@ type Hote {
   adresse: String!
 }
 
+type Event {
+  id: Int!
+  name: String!
+  description: String!
+  date_event: DateTime!
+  time_event: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Convive {
+  id: Int!
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
+type User {
+  id: Int!
+  name: String!
+  telephone: String!
+  email: String!
+  password: String!
+}
+
+type Prestataire {
+  id: Int!
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
+}
+
 type Query {
   app(id: Int!): App!
   user(id: Int!): User!
   hote(id: Int!): Hote!
   prestataire(id: Int!): Prestataire!
   convive(id: Int!): Convive!
+  event(id: Int!): Event!
+  evnetToartist: [EventToArtiste!]!
+  artist: [Artiste!]!
+  album: [Album!]!
 }
 
 type Mutation {
@@ -64,6 +94,12 @@ type Mutation {
   createConvive(createConviveInput: CreateConviveInput!): Convive!
   updateConvive(updateConviveInput: UpdateConviveInput!, id: Float!): Convive!
   removeConvive(id: Int!): Convive!
+  createEvent(createHoteInput: CreateEventInput!): Event!
+  updateEvent(updateHoteInput: UpdateEventInput!, id: Float!): Event!
+  removeEvent(id: Int!): Event!
+  createArtist(createAlbumInput: CreateAlbumInput!): Album!
+  updateArtist(updateAlbumInput: UpdateAlbumInput!, id: Float!): Album!
+  removeArtist(id: Int!): Album!
 }
 
 input CreateAppInput {
@@ -80,13 +116,11 @@ input UpdateAppInput {
 input CreateUserInput {
   name: String!
   telephone: String!
-  userrole: String!
 }
 
 input UpdateUserInput {
   name: String!
   telephone: String!
-  userrole: String!
 }
 
 input CreateHoteInput {
@@ -108,7 +142,6 @@ input CreatePrestataireInput {
   telephone: String!
   password: String!
   adresse: String!
-  roles: String!
 }
 
 input UpdatePrestataireInput {
@@ -116,7 +149,6 @@ input UpdatePrestataireInput {
   telephone: String!
   password: String!
   adresse: String!
-  roles: String!
 }
 
 input CreateConviveInput {
@@ -131,4 +163,26 @@ input UpdateConviveInput {
   telephone: String!
   adresse: String!
   password: String!
+}
+
+input CreateEventInput {
+  name: String!
+  description: String!
+  date_event: DateTime!
+  time_event: DateTime!
+}
+
+input UpdateEventInput {
+  name: String!
+  description: String!
+  date_event: DateTime!
+  time_event: DateTime!
+}
+
+input CreateAlbumInput {
+  titre: String!
+}
+
+input UpdateAlbumInput {
+  titre: String!
 }

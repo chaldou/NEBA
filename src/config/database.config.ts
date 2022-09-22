@@ -7,7 +7,7 @@ export const config: TypeOrmModuleOptions = {
     username: 'postgres',
     password: '12345',
     database: 'neba_db',
-    entities: ['dist/events/entities/*','dist/user/entities/*'],
+    entities: ['dist/prestataire/entities/*','dist/user/entities/*','dist/hote/entities/*','dist/events/entities/*','dist/user/entities/*','dist/convive/entities/*','dist/album/entities/*','dist/artiste/entities/*','dist/eventsToconvive/entities/*','dist/eventsToartiste/entities/*'],
     synchronize: true,
     autoLoadEntities: true
 }

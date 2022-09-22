@@ -1,6 +1,4 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { isEnumType } from 'graphql';
-import { Roles } from '../../../roles/role.enum';
 import {  Column } from 'typeorm';
 
 
@@ -21,15 +19,16 @@ export class CreatePrestataireInput {
   @Field()
   @Column('varchar', { nullable: true, length: 100 })
   adresse: string;
+}
 
-  @Field()
+  /*@Field()
   @Column({type: "enum",
           enum: Roles,
           default: Roles.ARTISTE})
   roles: Roles
 }
 
-/*@InputType()
+@InputType()
 export class ResponsePrestataire{
   @Field()
   @Column('varchar', { nullable: true, length: 100 })

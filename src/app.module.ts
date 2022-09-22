@@ -12,8 +12,10 @@ import { config } from './config/database.config';
 import { HoteModule } from './modules/hote/hote.module';
 import { PrestataireModule } from './modules/prestataire/prestataire.module';
 import { ConviveModule } from './modules/convive/convive.module';
+import { EventToArtistModule } from './modules/eventToartiste/eventToartist.module';
+import { EventToConviveModule } from './modules/eventToconvive/eventToconvive.module';
+import { AlbumModule } from './modules/album/album.module';
 
-//import DatabaseConfig from './config/database.config'
 
 @Module({
   providers: [AppResolver, AppService],
@@ -25,7 +27,7 @@ import { ConviveModule } from './modules/convive/convive.module';
         playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
-    UserModule, EventsModule, AuthModule, HoteModule, PrestataireModule, ConviveModule
+    UserModule, AuthModule,HoteModule,PrestataireModule,ConviveModule,EventsModule,EventToArtistModule,EventToConviveModule,AlbumModule
   ],
 })
 export class AppModule {}

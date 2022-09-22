@@ -1,17 +1,13 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import {
-  BeforeInsert,
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Hote } from './hote.entity';
-/*import * as bcrypt from 'bcryptjs';
-import { ResponseConcive } from '../modules/convive/dto/create-convive.input';
-import * as jwt from 'jsonwebtoken'*/
+import { EventToConvive } from './EventToConvive.entity';
+import { User } from './user.entity';
 
 
 @Entity()
@@ -19,7 +15,7 @@ import * as jwt from 'jsonwebtoken'*/
 export class Convive {
   @Field(() => Int)
   @PrimaryGeneratedColumn('uuid')
-  id?: number;
+  id: number;
 
   @Field()
   @Column('varchar', { nullable: true, length: 100 })
@@ -37,34 +33,10 @@ export class Convive {
   @Field()
   @Column('varchar', { nullable: false, length: 100 })
   adresse: string;
-    
 
-  @ManyToMany(() => Hote, (hote) => hote.convive)
-  hote: Hote[]
+  @ManyToOne(()=> User, (user) => user.convive)
+  user: User
 
+  @OneToMany(() => EventToConvive, eventToconvive => eventToconvive.convive)
+  public eventToconvive!: EventToConvive[];
 }
-/*@BeforeInsert()
-  async hashPassword(){
-   this.password = await bcrypt.hash(this.password, 10)
-}
-//this methode works as a type converter, where userentity is converted into a userresponsedto
-toresponseobject(createToken: boolean = true): ResponseConcive{
-  const { name, telephone, adresse, password} = this;
-  const responseobject: ResponseConcive = {name, telephone, adresse, password};
-  if(createToken){
-    responseobject.token= this.createToken();
-  }
-
-  return responseobject;
-  }
-
-  async comparepassword(attempt: string){
-    return await bcrypt.compare(attempt, this.password)
-  }
-
-  private createToken(): string{
-     const {name, telephone} = this;
-     return jwt.sign({name, telephone}, process.env.SECRET || 'tinchat', {expiresIn: `${process.env.JWT_EXPIRATION || 604800}s`});
-  }
-
-}*/

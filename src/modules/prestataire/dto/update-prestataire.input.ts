@@ -1,7 +1,7 @@
 import { CreatePrestataireInput } from './create-prestataire.input';
 import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
 import { Column } from 'typeorm';
-import { Roles } from '../../../roles/role.enum';
+
 
 
 @InputType()
@@ -22,9 +22,4 @@ export class UpdatePrestataireInput extends PartialType(CreatePrestataireInput) 
   @Column('varchar', { nullable: false, length: 100 })
   password: string;
 
-  @Field()
-  @Column({type: "enum",
-          enum: Roles,
-          default: Roles.ARTISTE})
-  roles: Roles
 }

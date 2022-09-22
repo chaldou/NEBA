@@ -35,33 +35,4 @@ export class UserResolver {
     async removeUser(@Args('id', { type: () => Int }) id: number) {
       return await this.userService.remove(id);
     }
-  /*@Query(() => Hote)
-  @UseGuards(new AuthGuard())
-  me(@Context('hote') hote: Hote) {
-    return hote;
-  }
-
-  @Mutation(() => Hote)
-  @UsePipes(new ValidationPipe())
-  async register(@Body() data: CreateHoteInput, @Res() res: Response): Promise<void> {
-      const userResponseData = await this.userService.registerhote(data);
-      res.set('Authorization', 'Bearer ' + userResponseData.token);
-      res.send(userResponseData);
-    }
-
-  @Mutation(() => Hote)
-  @UsePipes(new ValidationPipe())
-    async login(@Body() data: CreateHoteInput, @Res() res: Response): Promise<void> {
-        const userResponseData = await this.userService.loginhote(data);
-        res.set('Authorization', 'Bearer ' + userResponseData.token);
-        res.send(userResponseData);
-  }
-
-  @Mutation(() => Hote)
-  @UseGuards(AuthGuard)
-  @UsePipes(new ValidationPipe())
-  logoutt(@Body() data: LogoutHote):void {
-      this.userService.logouthote(data);
-  }*/
-  
 }

@@ -1,7 +1,8 @@
 import { ObjectType, Field, Int, InputType, ID, ResolveProperty } from '@nestjs/graphql';
-import { isEnumType } from 'graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { UserRoles } from '../roles/role.enum';
+import { IsEmail } from 'class-validator';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Convive } from './convive.entity';
+import { Hote } from './hote.entity';
 
 @Entity()
 @ObjectType()
@@ -19,13 +20,18 @@ export class User {
   telephone: string;
 
   @Field()
+  @IsEmail()
+  @Column('varchar', { nullable: false, length: 100 })
+  email: string;
+
+  @Field()
   @Column('varchar', { nullable: false, length: 100 })
   password: string;
 
-  @Field()
-  @Column({type: "enum",
-          enum: UserRoles,
-          default: UserRoles.HOTE})
-  userrole?: UserRoles
+  @OneToMany(() => Hote, (hote) => hote.user)
+  hote : Hote[]
+
+  @OneToMany(() => Convive, (convive) => convive.user)
+  convive : Convive[]
 }
 
