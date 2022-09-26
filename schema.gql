@@ -7,6 +7,14 @@ type App {
   exampleField: Int!
 }
 
+type User {
+  id: Int!
+  name: String!
+  telephone: String!
+  email: String!
+  password: String!
+}
+
 type Album {
   id: Float!
   titre: String!
@@ -19,6 +27,14 @@ type Artiste {
 
 type EventToArtiste {
   id: Float!
+}
+
+type Convive {
+  id: Int!
+  name: String!
+  telephone: String!
+  password: String!
+  adresse: String!
 }
 
 type Hote {
@@ -42,22 +58,6 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Convive {
-  id: Int!
-  name: String!
-  telephone: String!
-  password: String!
-  adresse: String!
-}
-
-type User {
-  id: Int!
-  name: String!
-  telephone: String!
-  email: String!
-  password: String!
-}
-
 type Prestataire {
   id: Int!
   name: String!
@@ -73,7 +73,7 @@ type Query {
   prestataire(id: Int!): Prestataire!
   convive(id: Int!): Convive!
   event(id: Int!): Event!
-  evnetToartist: [EventToArtiste!]!
+  eventToartist: [EventToArtiste!]!
   artist: [Artiste!]!
   album: [Album!]!
 }
@@ -116,11 +116,15 @@ input UpdateAppInput {
 input CreateUserInput {
   name: String!
   telephone: String!
+  email: String!
+  password: String!
 }
 
 input UpdateUserInput {
   name: String!
   telephone: String!
+  email: String
+  password: String
 }
 
 input CreateHoteInput {

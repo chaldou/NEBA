@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { EventToArtiste } from "../../entities/eventToartiste.entity";
@@ -8,7 +9,7 @@ import { EventToArtisteservice } from "./eventToartiste.service";
 
 @Module({
     providers:[EventToArtisteservice, EventToArtisteResolver],
-    imports: [forwardRef(() => EventsModule),forwardRef(() => ArtistModule),TypeOrmModule.forFeature([EventToArtiste])],
+    imports: [EventsModule,ArtistModule,TypeOrmModule.forFeature([EventToArtiste])],
     exports: [EventToArtisteResolver, EventToArtisteservice]
 })
 

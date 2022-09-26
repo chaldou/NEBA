@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import {
   Column,
@@ -5,6 +6,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   ManyToOne,
+  JoinColumn,
+  OneToOne,
 } from 'typeorm';
 import { Convive } from './convive.entity';
 import { Event } from './events.entity';
@@ -33,10 +36,12 @@ export class Hote {
   @Column('varchar', { nullable: true, length: 100 })
   adresse: string;
 
-  @ManyToOne(()=> User, (user) => user.hote)
+  @OneToOne(()=> User)
+  @JoinColumn()
   user: User
 
   @ManyToOne(()=> Event, (event) => event.hote)
   event: Event[]
 
 }
+

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Args, Int, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { Event } from "../../entities/events.entity";
 import { CreateEventInput } from "./dto/create-event.input";

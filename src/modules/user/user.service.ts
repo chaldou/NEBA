@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CACHE_MANAGER, HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -17,7 +18,7 @@ export class UserService {
   ) {}
 
   create(createuserInput: CreateUserInput) {
-    return this.userrepository.create(createuserInput)
+    return this.userrepository.save(createuserInput)
   }
 
   findAll():Promise<User[]> {

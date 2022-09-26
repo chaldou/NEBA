@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppResolver } from './app.resolver';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -16,17 +17,17 @@ import { EventToArtistModule } from './modules/eventToartiste/eventToartist.modu
 import { EventToConviveModule } from './modules/eventToconvive/eventToconvive.module';
 import { AlbumModule } from './modules/album/album.module';
 
-
 @Module({
   providers: [AppResolver, AppService],
   imports: [
     TypeOrmModule.forRoot(config),
     GraphQLModule.forRoot<ApolloDriverConfig>({
-        driver: ApolloDriver,
-        debug: true,
-        playground: true,
+      driver: ApolloDriver,
+      debug: true,
+      playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.gql'),
     }),
+    // eslint-disable-next-line prettier/prettier
     UserModule, AuthModule,HoteModule,PrestataireModule,ConviveModule,EventsModule,EventToArtistModule,EventToConviveModule,AlbumModule
   ],
 })

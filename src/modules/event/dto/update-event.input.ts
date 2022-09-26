@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Field, InputType, PartialType } from "@nestjs/graphql";
 import { Column } from "typeorm";
 import { CreateEventInput } from "./create-event.input";

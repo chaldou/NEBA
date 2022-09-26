@@ -1,4 +1,5 @@
-import { Module } from "@nestjs/common";
+/* eslint-disable prettier/prettier */
+import { forwardRef, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { EventToConvive } from "../../entities/EventToConvive.entity";
 import { ConviveModule } from "../convive/convive.module";
@@ -8,7 +9,7 @@ import { EventToConviveservice } from "./eventToconvive.service";
 
 @Module({
     providers:[EventToConviveResolver, EventToConviveservice],
-    imports: [ConviveModule,EventsModule,TypeOrmModule.forFeature([EventToConvive])],
+    imports: [EventsModule,ConviveModule,TypeOrmModule.forFeature([EventToConvive])],
     exports: [EventToConviveResolver, EventToConviveservice]
 })
 export class ArtistModule{}

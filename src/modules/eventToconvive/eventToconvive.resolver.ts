@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Query, Resolver } from "@nestjs/graphql";
 import { EventToConvive } from "../../entities/EventToConvive.entity";
 import { EventToConviveservice } from "./eventToconvive.service";

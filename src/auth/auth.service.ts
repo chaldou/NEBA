@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { UserService } from '../modules/user/user.service';
 import { JwtService } from '@nestjs/jwt';
@@ -11,14 +12,13 @@ export class AuthService {
     async validateUser(telephone: string, password: string): Promise<any> {
       const user = await this.usersService.findByTelephone(telephone)
       if (user && user.password === password) {
-        const { password, ...result } = user;
-        return result;
+        return user;
       }
       return null;
     }
 
     async login(user: any) {
-      const payload = { name: user.name, telephone: user.telephone};
+      const payload = { telephone: user.telephone, sub: user.id};
       return {
         access_token: this.jwtService.sign(payload),
       };

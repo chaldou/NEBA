@@ -1,11 +1,12 @@
-import { ObjectType, Field, Int, InputType, ID, ResolveProperty } from '@nestjs/graphql';
+/* eslint-disable prettier/prettier */
+import { ObjectType, Field, Int} from '@nestjs/graphql';
 import { IsEmail } from 'class-validator';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Convive } from './convive.entity';
 import { Hote } from './hote.entity';
 
-@Entity()
 @ObjectType()
+@Entity()
 export class User {
   @Field(() => Int)
   @PrimaryGeneratedColumn('uuid')
@@ -28,10 +29,5 @@ export class User {
   @Column('varchar', { nullable: false, length: 100 })
   password: string;
 
-  @OneToMany(() => Hote, (hote) => hote.user)
-  hote : Hote[]
-
-  @OneToMany(() => Convive, (convive) => convive.user)
-  convive : Convive[]
 }
 
